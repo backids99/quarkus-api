@@ -49,9 +49,9 @@ public class TagRepository implements PanacheRepository<Tag> {
     }
 
     public Tag create(Tag tag) {
-        Tag tagFind = Tag.findByLabel(tag.label);
+        Tag tagFind = find("label", tag.label).firstResult();
         if (tagFind != null) {
-            return tag;
+            return tagFind;
         } else {
             Tag newTag = new Tag();
             newTag.label = tag.label;
